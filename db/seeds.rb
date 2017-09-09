@@ -29,15 +29,15 @@ puts "ADMINISTRADOR cadastrado com sucesso!"
 
 
 # Cadastrando pedido
-#puts "Cadastrando PEDIDO ..."
+puts "Cadastrando PEDIDO ..."
 
-#x = Produto.create!(produto: "teste3", valor: 1.2)  # O create já cria e salva o produto
-#y = Produto.create!(produto: "teste4", valor: 2.3)
+x = Produto.create!(produto: "teste3", valor: 1.2)  # O create já cria e salva o produto
+y = Produto.create!(produto: "teste4", valor: 2.3)
 
-##z = Pedido.new(status: 1)
-#z.produtos << x
-#z.produtos << y
-#z.save!
+z = Pedido.new(status: 1)
+z.produtos << x
+z.produtos << y
+z.save!
 
-#puts "PEDIDO cadastrado com sucesso"
+puts "PEDIDO cadastrado com sucesso"
 
