@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  produto: MyString
+  valor: 9.99
+  qtdstq: 1
+  descricao: MyString
+  img: MyString
+  pedidoItem_id: 
+
+two:
+  produto: MyString
+  valor: 9.99
+  qtdstq: 1
+  descricao: MyString
+  img: MyString
+  pedidoItem_id: 
