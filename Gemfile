@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+
 gem 'faker'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -43,5 +44,3 @@ gem 'rails_12factor', group: :production
 
 gem "better_errors", group: [:development, :test]
 gem "binding_of_caller", group: [:development, :test]
-
-ruby "2.1.2"
