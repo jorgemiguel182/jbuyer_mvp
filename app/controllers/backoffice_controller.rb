@@ -3,5 +3,6 @@ class BackofficeController < ApplicationController
   
   
   def index
+     @pedido_aguardando = User.joins(:pedido).where("status = 1")
   end
 end

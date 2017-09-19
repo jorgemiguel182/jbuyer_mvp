@@ -7,37 +7,92 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #Cadastrando Administrador
-#puts "Cadastrando o ADMINISTRADOR..."
+puts "Cadastrando o ADMINISTRADOR..."
 
-#Admin.create!(
- #   email: "admin@admin.com",
- #   password: "123456",
- #   password_confirmation: "123456")
+Admin.create!(
+    name: "Jorge Miguel",
+    email: "admin@admin.com",
+    password: "123456",
+    password_confirmation: "123456",
+    role: 0)
 
-#puts "ADMINISTRADOR cadastrado com sucesso!"
-
-
-
-# #Cadastrando Produto
-# puts "Cadastrando PRODUTOS..."
-
-#   Produto.create!(
-#     produto: "Sabao",
-#     valor: '1,50'
-#     )
-# puts "Produto cadastrado com sucesso!"
+puts "ADMINISTRADOR cadastrado com sucesso!"
 
 
-# Cadastrando pedido
-puts "Cadastrando PEDIDO ..."
+#Cadastrando Tipos de Produtos
+puts "Cadastrando Tipos de Produtos"
+  15.times do 
+    TipoProduto.create!(
+      nome_tipo: Faker::Commerce.department(2, true),
+      desc_tipo: Faker::Commerce.department
+    )
+  end
+puts "Tipos de Produtos Cadastrados"
 
-x = Produto.create!(produto: "teste3", valor: 1.2)  # O create já cria e salva o produto
-y = Produto.create!(produto: "teste4", valor: 2.3)
 
-z = Pedido.new(status: 1)
-z.produtos << x
-z.produtos << y
-z.save!
 
-puts "PEDIDO cadastrado com sucesso"
+
+# Cadastrando produtos/pedido
+puts "Cadastrando PRODUTOS ..."
+50.times do 
+  x = Produto.new(
+    produto: Faker::Commerce.product_name, 
+    valor_venda: Faker::Commerce.price, 
+    valor_pago: Faker::Commerce.price, 
+    qtd_estoque: Random.rand(50..150), 
+    desc_produto: Faker::Lorem.sentence 
+  )  
+  x.tipo_produto = TipoProduto.all.sample
+  x.save!
+end
+puts "PRODUTOS cadastrados com sucesso!"
+
+# Cadastrando User
+15.times do
+  puts "Cadastrando USER..."
+  u = User.new(
+    nome: Faker::Name.name, 
+    cpf: Faker::Number.number(10), 
+    tel_fixo: Faker::PhoneNumber.phone_number, 
+    tel_cel: Faker::PhoneNumber.cell_phone, 
+    email: Faker::Internet.email
+  )
+  
+  # Cadastrando Endereço
+  puts " Cadastrando Endereco"
+  en = Endereco.create!(rua: Faker::Address.street_address,
+    cidade: Faker::Address.city_prefix,
+    uf: Faker::Address.country_code,
+    cep: Faker::Address.zip_code,
+    complemento: Faker::Address.secondary_address)
+  puts " Endereco Cadastrado....."
+  
+  u.endereco = en  
+  
+puts "  Cadastrando PEDIDO..."
+  z = Pedido.create!(
+    status: Random.rand(1..2), 
+    numero_nf: Faker::Number.number(6), 
+    data_compra: '16/09/2017'
+  )
+puts "  PEDIDO cadastrado com sucesso"
+  
+puts "   Cadastrando Itens do pedido..."  
+  20.times do
+    pedprod = PedidoProduto.new(contador: Faker::Number.between(1, 5))
+    pedprod.produto = Produto.all.sample
+    pedprod.pedido = z
+    pedprod.save!
+  end
+puts "   Itens do pedido cadastrados"
+  
+
+
+  
+  u.pedido = z  
+  
+  u.save!
+puts "USER cadastrado com sucesso..."
+end
+
 

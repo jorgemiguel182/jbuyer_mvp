@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821010604) do
+ActiveRecord::Schema.define(version: 20170918223808) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -26,27 +26,74 @@ ActiveRecord::Schema.define(version: 20170821010604) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.integer  "role"
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
+  create_table "enderecos", force: true do |t|
+    t.string   "rua"
+    t.string   "bairro"
+    t.string   "cidade"
+    t.string   "uf"
+    t.integer  "cep"
+    t.string   "referencia"
+    t.string   "numero"
+    t.string   "complemento"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pedido_produtos", force: true do |t|
+    t.integer  "pedido_id"
+    t.integer  "produto_id"
+    t.float    "contador"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pedido_produtos", ["pedido_id"], name: "index_pedido_produtos_on_pedido_id"
+  add_index "pedido_produtos", ["produto_id"], name: "index_pedido_produtos_on_produto_id"
+
   create_table "pedidos", force: true do |t|
-    t.datetime "data"
     t.integer  "status"
+    t.float    "numero_nf"
+    t.float    "total",       default: 0.0, null: false
+    t.date     "data_compra"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "produtos", force: true do |t|
     t.string   "produto"
-    t.float    "valor"
-    t.integer  "pedido_id"
-    t.integer  "produto_id"
+    t.integer  "qtd_estoque"
+    t.string   "desc_produto"
+    t.float    "valor_pago"
+    t.float    "valor_venda"
+    t.integer  "tipo_produto_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "produtos", ["produto_id"], name: "index_produtos_on_produto_id"
+  create_table "tipo_produtos", force: true do |t|
+    t.string   "nome_tipo"
+    t.string   "desc_tipo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "nome"
+    t.integer  "cpf"
+    t.string   "tel_fixo"
+    t.string   "tel_cel"
+    t.string   "email"
+    t.integer  "endereco_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

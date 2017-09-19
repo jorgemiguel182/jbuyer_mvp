@@ -2,15 +2,30 @@
   <div class='container-fluid'>
     <div style='display: block;' class="col-xs-6 esquerdo ">
 
-
-      <label>Pedido - <%= @pedido.id%></label> <br>
-      <label>Nome Cliente</label> <br>
-      <label>Telefone</label> <br>
-      <label>N.Pedido</label> <br>
+      <label>Pedido: <%= @pedido.id%></label> <br>
+      <label>Nome Cliente: <%= @pedido.user.nome%></label> <br>
+      <label>Telefone: <%= @pedido.user.tel_cel%></label> <br>
+      <label>Endereço 
+        <div> 
+          Rua: <%= @pedido.user.endereco.rua %>
+               <%= @pedido.user.endereco.complemento %><br>
+          Cidade: <%= @pedido.user.endereco.cidade %><br>
+          Cep: <%= @pedido.user.endereco.cep %>
+        </div>
+      </label> <br>        
+                        
     </div>
     <div class="col-xs-6 pull-right">
       <h1>Preço Total</h1>
-      <h3>R$</h3>
+      <h3>
+        R$<% total = 0 %>
+          <% @pedido.pedido_produtos.each do |a|%>
+            <% total += a.contador * a.produto.valor_venda %>
+          <% end %>
+          <%= number_with_precision(total, precision: 2) %>
+      
+      
+      </h3>
     </div>
 
     <table class='table'>
@@ -22,19 +37,24 @@
         <th>p.tot</th>
       </tr>
       <tbody>
-        <% @pedido.produtos.each do |cada| %>
+        <% @pedido.pedido_produtos.each do |cada| %>
           <tr>
             <td>
-              <%= cada.id %>
+              <%= cada.produto.id %>
             </td>
             <td>
-              <%= cada.produto %>
+              <%= cada.produto.produto %>
             </td>
-            <td>quantidade implementar</td>
-            <td>R$
-              <%= cada.valor %>
+            <td>
+              <%= cada.contador %>
             </td>
-            <td>valor total implementar</td>
+            <td>
+              R$<%= number_with_precision(cada.produto.valor_venda, precision: 2) %>
+            </td>
+            <td>              
+              <% v_total = cada.contador * cada.produto.valor_venda %>
+              R$<%= number_with_precision(v_total, precision: 2) %>
+            </td>
           </tr>
           <% end %>
       </tbody>

@@ -1,15 +1,18 @@
 class Backoffice::Filtrado::FiltradosController < ApplicationController
+  before_action :authenticate_admin!
   layout "backoffice", except: [:detalhes]
   def index  
     
   end
   
   def abertos    
-    @pedidos_aguardando = Pedido.waiting    
+    @pedido_aguardando = User.joins(:pedido).where("status = 1")
+    
+
   end
   
   def fexados    
-    @pedidos_finalizados = Pedido.ok    
+    @pedido_fexado = User.joins(:pedido).where("status = 2")   
   end
 
   def show
@@ -17,6 +20,7 @@ class Backoffice::Filtrado::FiltradosController < ApplicationController
   end
   
   def detalhes
+    
     
     set_pedido
         

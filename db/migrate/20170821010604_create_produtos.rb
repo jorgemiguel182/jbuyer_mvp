@@ -2,11 +2,13 @@ class CreateProdutos < ActiveRecord::Migration
   def change
     create_table :produtos do |t|
       t.string :produto
-      t.float :valor
-      t.integer :pedido_id
+      t.integer :qtd_estoque
+      t.string :desc_produto
+      t.float :valor_pago
+      t.float :valor_venda     
       
-       t.belongs_to :produto, index: true
- 
+      t.references :tipo_produto
+         
       t.timestamps
     end
   end

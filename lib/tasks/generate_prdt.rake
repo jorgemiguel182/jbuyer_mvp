@@ -1,7 +1,7 @@
 namespace :generate_prdt do
   desc "Cria produtos fake"
-    task Produtos: :environment do
-      puts "Cadastrando o PRODUTOS..."
+  task Produtos: :environment do
+    puts "Cadastrando o PRODUTOS..."
         
         randomizado = Random.rand(10...42)
        

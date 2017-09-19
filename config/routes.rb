@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   namespace :backoffice do
+  resources :admins
+  end
+
+  namespace :backoffice do
   namespace :filtrado do
     get 'filtrados/detalhes'
     get 'filtrados/abertos'
@@ -15,14 +19,9 @@ Rails.application.routes.draw do
   end
 end
 
-
   namespace :backoffice do
-    resources :filtrados, :pedidos, except: [ :destroy] do
-      get :detalhes, on: :member
-    end
+    resources :filtrados, :pedidos, except: [ :destroy] 
   end
-  
-  
   
   devise_for :admins
   

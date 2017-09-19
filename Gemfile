@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 gem 'faker'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -17,28 +17,28 @@
                 <th>Pedido</th>
                 <th>Status</th>
                 <th>Data/Hora </th>
-                <th>Produtos </th>
+                <th>Cliente </th>
                 <th> </th>
               </tr>
             </thead>
             <tbody>
-              <% @pedidos_aguardando.each do |pedido| %>
+              <% @pedido_aguardando.each do |pedido| %>
                 <tr>
                   <td>
-                    <%= link_to detalhes_backoffice_filtrado_filtrado_path(pedido), target: '_blank' do%>
-                    <i class="fa fa-edit"></i>
-                    <% end %>
+                    <%= link_to pedido.id, detalhes_backoffice_filtrado_filtrado_path(pedido), target: '_blank' %>                  
                   </td>
-
+                  
                   <td>
-                    <%=pedido.status%>
+                    
+                    <%=pedido.pedido.status%>
+             
                   </td>
                   <td>
                     <%=pedido.created_at%>
                   </td>
-                  <!--<th><%=pedido.produtos.first.produto %></th>-->
+                    
                   <td>
-                    <%=pedido.produtos.pluck (:produto)%>
+                    <%= pedido.nome %>
                   </td>
 
                   <td width="50px">
