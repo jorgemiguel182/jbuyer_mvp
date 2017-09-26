@@ -1,7 +1,7 @@
 <div id="page-wrapper">
   <div class="row">
     <div class="panel panel-default">
-    <div class="panel-heading">
+      <div class="panel-heading">
         <h2>Listando Administradores</h2>
       </div>
       <!-- /.panel-heading -->
@@ -18,6 +18,7 @@
               </tr>
             </thead>
             <tbody>
+             
               <% @admins.each do |admin| %>
                 <tr>
                   <td>
@@ -38,7 +39,7 @@
                       <% end %>
 
                         <% if current_admin.id != admin.id %>
-                          <%= link_to backoffice_admin_path(admin), method: :delete, class:"btn btn-danger btn-circle", data: {confirm: "Você deseja realmente excluir (<b>#{admin.email}</b>)?"} do %>
+                          <%= link_to backoffice_admin_path(admin), method: :delete, class:"btn btn-danger btn-circle", data: {confirm: "Você deseja realmente excluir <b>#{admin.email}</b>?"} do %>
                             <i class="fa fa-minus"></i>
                             <% end %>
                               <% else %>
@@ -50,27 +51,28 @@
                   </td>
                 </tr>
                 <% end %>
+              
             </tbody>
           </table>
         </div>
         <!-- /.table-responsive -->
-        
-        <div >
-        
+
+        <div>
 
 
-        <%= link_to new_backoffice_admin_path, class:"btn btn-success btn-circle pull-right", style:"margin-top: -5px" do %>
-          <i class="fa fa-plus"></i>
-          <% end %>
+          
+            <%= link_to new_backoffice_admin_path, class:"btn btn-success btn-circle pull-right", style:"margin-top: -5px" do %>
+              <i class="fa fa-plus"></i>
+              <% end %>
+                
+
+
+        </div>
 
 
 
-      </div>
-        
-        
-        
       </div>
       <!-- /.panel-body -->
     </div>
   </div>
-   </div>
+</div>

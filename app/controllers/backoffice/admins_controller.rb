@@ -1,11 +1,16 @@
 class Backoffice::AdminsController < BackofficeController
   before_action :set_admin, only: [:edit, :update, :destroy]
+  after_action :verify_authorized, only: [:new, :edit, :destroy]
+  after_action :verify_policy_scoped, only: :index
+  
   def index
-    @admins = Admin.all
+    #@admins = Admin.all
+    @admins = policy_scope(Admin)
   end
   
   def new
     @admin = Admin.new
+    authorize @admin
   end
 
   def create
@@ -18,15 +23,27 @@ class Backoffice::AdminsController < BackofficeController
   end
   
    def edit
-    
-  end
+    authorize @admin
+    end
 
-  def update   
-    if @admin.update(params_admin)
+  def update
+    if @admin.update(params_admin)      
       redirect_to backoffice_admins_path, notice: "O administrador (#{@admin.email}) foi cadastrado com sucesso!"
     else 
       render :edit
     end
+  end
+  
+  def destroy
+    authorize @admin
+   admin_email = @admin.email
+    if @admin.destroy
+      redirect_to backoffice_admins_path, notice: "O administrador (#{admin_email}) foi excluido com sucesso!"
+    else
+      render :index
+    end
+
+    
   end
   
   private
@@ -43,7 +60,7 @@ class Backoffice::AdminsController < BackofficeController
       params[:admin].except!(:password, :password_confirmation)
     end
 
-      params.require(:admin).permit(:name, :email, :password, :password_confirmation)
+      params.require(:admin).permit(:name, :email, :password, :password_confirmation, :role)
     end
   
   

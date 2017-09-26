@@ -4,4 +4,6 @@ class User < ActiveRecord::Base
   
  # scope :co_pedido, ->  User.joins(:pedido)
   
+  
+  
 end

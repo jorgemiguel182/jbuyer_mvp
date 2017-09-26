@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'pundit'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'will_paginate', '~> 3.1.0'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'faker'

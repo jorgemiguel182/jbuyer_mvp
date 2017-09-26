@@ -49,7 +49,8 @@ ActiveRecord::Schema.define(version: 20170918223808) do
   create_table "pedido_produtos", force: true do |t|
     t.integer  "pedido_id"
     t.integer  "produto_id"
-    t.float    "contador"
+    t.float    "contador",    default: 1.0, null: false
+    t.string   "tipo_medida", default: "1", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,10 +59,9 @@ ActiveRecord::Schema.define(version: 20170918223808) do
   add_index "pedido_produtos", ["produto_id"], name: "index_pedido_produtos_on_produto_id"
 
   create_table "pedidos", force: true do |t|
-    t.integer  "status"
+    t.integer  "status",                   null: false
     t.float    "numero_nf"
-    t.float    "total",       default: 0.0, null: false
-    t.date     "data_compra"
+    t.float    "total",      default: 0.0, null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20170918223808) do
 
   create_table "users", force: true do |t|
     t.string   "nome"
-    t.integer  "cpf"
+    t.string   "cpf"
     t.string   "tel_fixo"
     t.string   "tel_cel"
     t.string   "email"

@@ -22,6 +22,10 @@ end
   namespace :backoffice do
     resources :filtrados, :pedidos, except: [ :destroy] 
   end
+
+  namespace :backoffice do
+    resources :produtos, only: [ :show, :index] 
+  end
   
   devise_for :admins
   

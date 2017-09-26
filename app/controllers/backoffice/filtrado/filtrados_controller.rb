@@ -1,18 +1,20 @@
-class Backoffice::Filtrado::FiltradosController < ApplicationController
+class Backoffice::Filtrado::FiltradosController < BackofficeController
   before_action :authenticate_admin!
-  layout "backoffice", except: [:detalhes]
+  layout "backoffice"
+  layout "application", only: :detalhes
   def index  
+    
     
   end
   
-  def abertos    
-    @pedido_aguardando = User.joins(:pedido).where("status = 1")
+  def abertos 
     
-
+    @pedido_aguardando = User.joins(:pedido).where("status = 1 OR status = 2").paginate(:page => params[:page], :per_page => 5)    
+    
   end
   
   def fexados    
-    @pedido_fexado = User.joins(:pedido).where("status = 2")   
+    @pedido_fexado = User.joins(:pedido).where("status = 3").merge(Pedido.order(updated_at: :desc)).paginate(:page => params[:page], :per_page => 5)
   end
 
   def show

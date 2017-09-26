@@ -16,6 +16,13 @@ Admin.create!(
     password_confirmation: "123456",
     role: 0)
 
+Admin.create!(
+    name: "Bruno Viado",
+    email: "teste@teste.com",
+    password: "123456",
+    password_confirmation: "123456",
+    role: 1)
+
 puts "ADMINISTRADOR cadastrado com sucesso!"
 
 
@@ -69,22 +76,22 @@ puts "PRODUTOS cadastrados com sucesso!"
   
   u.endereco = en  
   
-puts "  Cadastrando PEDIDO..."
+puts " Cadastrando PEDIDO..."
   z = Pedido.create!(
-    status: Random.rand(1..2), 
-    numero_nf: Faker::Number.number(6), 
-    data_compra: '16/09/2017'
+    status: Random.rand(1..3), 
+    numero_nf: Faker::Number.number(6),    
+    updated_at: Faker::Time.between(DateTime.now - 30, DateTime.now - 1) 
   )
-puts "  PEDIDO cadastrado com sucesso"
-  
-puts "   Cadastrando Itens do pedido..."  
+
+puts "  Cadastrando Itens do pedido..."  
   20.times do
     pedprod = PedidoProduto.new(contador: Faker::Number.between(1, 5))
     pedprod.produto = Produto.all.sample
     pedprod.pedido = z
     pedprod.save!
   end
-puts "   Itens do pedido cadastrados"
+puts "  Itens do pedido cadastrados"
+puts " PEDIDO cadastrado com sucesso"
   
 
 
