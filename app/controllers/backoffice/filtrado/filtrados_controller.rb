@@ -1,5 +1,5 @@
 class Backoffice::Filtrado::FiltradosController < BackofficeController
-  before_action :authenticate_admin!
+  #before_action :authenticate_admin!
   layout "backoffice"
   layout "application", only: :detalhes
   def index  
