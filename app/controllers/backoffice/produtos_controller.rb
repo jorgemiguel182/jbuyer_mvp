@@ -5,7 +5,7 @@ class Backoffice::ProdutosController < BackofficeController
   def index
     @produtos = Produto.all
         
-    render json: {produtos:(@produtos)}
+    render json: {produtos: @produtos}
     
   end
   

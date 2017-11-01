@@ -4,7 +4,7 @@ class Backoffice::PedidosController < BackofficeController
   
   def index   
     @pedidos = Pedido.all
-    render json: @pedidos, include: {pedido_produtos: {include: {produto: {only: [:valor_pago,:produto]}}, except: [:updated_at, :created_at]}}
+    render json: {pedidos: @pedidos.as_json(include: {pedido_produtos: {include: {produto: {only: [:valor_pago,:produto]}}, except: [:updated_at, :created_at]}})}
      
   end
   
