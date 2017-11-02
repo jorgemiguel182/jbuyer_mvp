@@ -93,6 +93,7 @@ GEM
     multi_json (1.12.1)
     orm_adapter (0.5.0)
     pg (0.21.0)
+    puma (3.10.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (1.5.5)
@@ -187,6 +188,7 @@ DEPENDENCIES
   jquery-rails
   mailcatcher
   pg
+  puma
   pundit
   rack-cors
   rails (= 4.1.6)
