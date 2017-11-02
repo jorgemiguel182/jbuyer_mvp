@@ -50,5 +50,5 @@ gem 'rails_12factor', group: :production
 # gem 'debugger', group: [:development, :test]
 
 gem "better_errors", group: [:development, :test]
-gem 'mailcatcher', group: [:development, :test]
+gem 'mailcatcher'
 gem "binding_of_caller", group: [:development, :test]
