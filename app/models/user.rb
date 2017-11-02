@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_one :pedido
+  has_many :pedidos
   belongs_to :endereco
   
  # scope :co_pedido, ->  User.joins(:pedido)

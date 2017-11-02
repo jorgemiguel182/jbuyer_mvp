@@ -9,12 +9,13 @@ class Backoffice::Filtrado::FiltradosController < BackofficeController
   
   def abertos 
     
-    @pedido_aguardando = User.joins(:pedido).where("status = 1 OR status = 2").paginate(:page => params[:page], :per_page => 5)    
-    
+    @pedido_aguardando = User.joins(:pedidos).where("status = 1 OR status = 2").paginate(:page => params[:page], :per_page => 5)    
+    @pedidos_aguardando = Pedido.where("status = 1 OR status = 2").paginate(:page => params[:page], :per_page => 5)
   end
   
   def fexados    
-    @pedido_fexado = User.joins(:pedido).where("status = 3").merge(Pedido.order(updated_at: :desc)).paginate(:page => params[:page], :per_page => 5)
+    @pedido_fexado = User.joins(:pedidos).where("status = 3").merge(Pedido.order(updated_at: :desc)).paginate(:page => params[:page], :per_page => 5)
+    @pedidos_fexado = Pedido.where("status = 3").order(updated_at: :desc).paginate(:page => params[:page], :per_page => 5)
   end
 
   def show

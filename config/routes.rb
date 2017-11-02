@@ -20,8 +20,25 @@ Rails.application.routes.draw do
 end
 
   namespace :backoffice do
-    resources :filtrados, :pedidos, except: [ :destroy] 
+    resources :filtrados
+    resources :pedidos, except: [ :destroy] do
+      member do
+        get :pedido_user
+      end
+    end
   end
+
+  namespace :backoffice do
+    resources :users do
+      resources :pedidos do
+        collection do
+        get :pedido_user
+      end
+      end
+    end
+  end
+  
+  
 
   namespace :backoffice do
     resources :produtos, only: [ :show, :index] 

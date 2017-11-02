@@ -1,6 +1,7 @@
 class Pedido < ActiveRecord::Base
   has_many :produtos, through: :pedido_produtos
   has_many :pedido_produtos
+  belongs_to :user
   accepts_nested_attributes_for :pedido_produtos
   
   belongs_to :user

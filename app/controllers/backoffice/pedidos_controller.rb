@@ -1,11 +1,17 @@
 class Backoffice::PedidosController < BackofficeController
   before_action :set_pedido, only: [:edit, :update, :show]
+  before_action :set_user, only: [:pedido_user]
   layout "backoffice"
   
   def index   
     @pedidos = Pedido.all
     render json: {pedidos: @pedidos.as_json(include: {pedido_produtos: {include: {produto: {only: [:valor_pago,:produto]}}, except: [:updated_at, :created_at]}})}
      
+  end
+  
+  def pedido_user
+    render json: @user
+    
   end
   
   def edit
@@ -20,8 +26,9 @@ class Backoffice::PedidosController < BackofficeController
   def update   
     respond_to do |format|
       if @pedido.update(params_pedido)
+        Backoffice::PedidoMailer.atualiza_pedido(@pedido.user).deliver
         format.json { render json: @pedido, status: :ok }    
-        format.html {redirect_to backoffice_filtrado_filtrados_abertos_path, notice: "O pedido foi alterado com sucesso"}
+        format.html { redirect_to backoffice_filtrado_filtrados_abertos_path, notice: "O pedido foi alterado com sucesso"}
       else 
         format.html { render :edit }
         format.json { render json: @pedido.errors, status: :unprocessable_entity }
@@ -48,6 +55,9 @@ class Backoffice::PedidosController < BackofficeController
       @pedido = Pedido.find params[:id]
     end
     
+  def set_user
+    @user = User.select('pedidos.*').joins(:pedidos).find params[:id]
+  end
   
   
   def params_pedido

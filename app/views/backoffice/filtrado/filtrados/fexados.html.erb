@@ -11,7 +11,7 @@
       <!-- /.panel-heading -->
       <div class="panel-body">
         <div class="apple_pagination">
-          <%= will_paginate @pedido_fexado, :container => false %>
+          <%= will_paginate @pedidos_fexado, :container => false %>
         </div>
         <div class="table-responsive">
           <table class="table table-striped table-bordered table-hover">
@@ -25,8 +25,8 @@
               </tr>
             </thead>
             <tbody>
-              <% unless @pedido_fexado.empty? %>
-              <% @pedido_fexado.each do |pedido| %>
+              <% unless @pedidos_fexado.empty? %>
+              <% @pedidos_fexado.each do |pedido| %>
                 <tr>
                   <td>
                     <%= link_to pedido.id, detalhes_backoffice_filtrado_filtrado_path(pedido), target: '_blank' %>                  
@@ -34,15 +34,15 @@
                   
                   <td>
                     
-                    <%=pedido.pedido.status%>
+                    <%=pedido.status%>
              
                   </td>
                   <td>
-                    <%= post_date pedido.pedido.updated_at%>
+                    <%= post_date pedido.updated_at%>
                   </td>
                     
                   <td>
-                    <%= pedido.nome %>
+                    <%= pedido.user.nome %>
                   </td>
 
                   <td width="50px">
