@@ -22,6 +22,8 @@ module Teste
     # config.i18n.default_locale = :de
     config.assets.precompile += %w( application )
     
+config.action_mailer.default_url_options = { host: 'https://marketappmvp.herokuapp.com' }
+    
 config.middleware.insert_before 0, "Rack::Cors" do
       allow do
         origins '*'
