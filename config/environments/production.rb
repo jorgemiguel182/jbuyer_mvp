@@ -29,7 +29,7 @@ config.action_mailer.delivery_method = :smtp
      address: 'smtp.mail.com',
      port: 587,
      domain: 'gmail.com',
-     user_name: 'jmdinfopg@gmail.com',
+     user_name: 'jmdinfopg',
      password: 'massacrat1@n',
      authentication: 'plain',
      enable_starttls_auto: true }
