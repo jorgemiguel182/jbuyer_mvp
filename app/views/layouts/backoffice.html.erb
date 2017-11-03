@@ -86,6 +86,8 @@
               <!-- /.nav-second-level -->
             </li>
             
+            <% if admin_signed_in? %>
+            <% if current_admin.full_access? %>
             <li>
               <a><i class="fa fa-user fa-fw"></i>Administração<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level">
@@ -110,6 +112,8 @@
               </ul>
               <!-- /.nav-second-level -->
             </li>
+            <% end %>
+            <% end %>
           </ul>
         </div>
         <!-- /.sidebar-collapse -->
