@@ -28,8 +28,8 @@ config.action_mailer.delivery_method = :smtp
    config.action_mailer.smtp_settings = {
      address: 'smtp.mail.com',
      port: 587,
-     domain: 'gmail.com',
-     user_name: "jmdinfopg",
+     domain: 'https://marketappmvp.herokuapp.com/',
+     user_name: "jmdinfopg@gmail.com",
      password: "massacrat1@n",
      authentication: 'plain',
      enable_starttls_auto: true }
