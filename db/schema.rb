@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170918223808) do
+ActiveRecord::Schema.define(version: 20171107022016) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -96,8 +96,10 @@ ActiveRecord::Schema.define(version: 20170918223808) do
     t.integer  "endereco_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "token"
   end
 
   add_index "users", ["endereco_id"], name: "index_users_on_endereco_id"
+  add_index "users", ["token"], name: "index_users_on_token"
 
 end
