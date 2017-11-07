@@ -5,7 +5,7 @@ class Backoffice::PedidosController < BackofficeController
   
   def index   
     @pedidos = Pedido.all
-    render json: {pedidos: @pedidos.as_json(include: {pedido_produtos: {include: {produto: {only: [:valor_pago,:produto]}}, except: [:updated_at, :created_at]}})}
+    render json: {pedidos: @pedidos.as_json(include: {pedido_produtos: {include: {produto: {only: [:valor_venda,:produto]}}, except: [:updated_at, :created_at]}})}
      
   end
   
@@ -56,7 +56,11 @@ class Backoffice::PedidosController < BackofficeController
     end
     
   def set_user
-    @user = User.select('pedidos.*').joins(:pedidos).find params[:id]
+    @usersd = User.joins(:pedidos).all
+    @user = @usersd.select("pedidos.*").where(:id => params[:id]).all
+   # @id = params[:id]
+   # @sser = Pedido.all
+   # @sser = @sser.where(:user_id => @id).all
   end
   
   
@@ -75,8 +79,7 @@ class Backoffice::PedidosController < BackofficeController
             :valor_pago,
             :produto
             ]
-        ]        
-        
+        ]                
       )    
     end
     

@@ -91,9 +91,13 @@ ActiveRecord::Schema.define(version: 20170918223808) do
     t.string   "tel_fixo"
     t.string   "tel_cel"
     t.string   "email"
+    t.string   "password"
+    t.string   "password_confirmation"
     t.integer  "endereco_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["endereco_id"], name: "index_users_on_endereco_id"
 
 end

@@ -75,7 +75,7 @@ puts "PRODUTOS cadastrados com sucesso!"
   puts " Endereco Cadastrado....."
   
   u.endereco = en  
-  
+2.times do
 puts " Cadastrando PEDIDO..."
   z = Pedido.create!(
     status: Random.rand(1..3), 
@@ -92,13 +92,14 @@ puts "  Cadastrando Itens do pedido..."
   end
 puts "  Itens do pedido cadastrados"
 puts " PEDIDO cadastrado com sucesso"
-  
 
 
+
   
-  u.pedido = z  
+  u.pedidos << z  
   
-  u.save!
+  u.save
+  end
 puts "USER cadastrado com sucesso..."
 end
 

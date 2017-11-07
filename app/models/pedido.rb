@@ -4,7 +4,6 @@ class Pedido < ActiveRecord::Base
   belongs_to :user
   accepts_nested_attributes_for :pedido_produtos
   
-  belongs_to :user
   #enum status: { Aberto: 1, Finalizado: 2 }
   
   STATUS = {:Aguardando => 1, :'Em atendimento' => 2, :Finalizado => 3}

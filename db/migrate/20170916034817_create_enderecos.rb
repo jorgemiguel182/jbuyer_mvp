@@ -9,9 +9,9 @@ class CreateEnderecos < ActiveRecord::Migration
       t.string :referencia
       t.string :numero
       t.string :complemento
+               
       
-      
-
+  
       t.timestamps
     end
   end
