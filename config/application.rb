@@ -23,6 +23,9 @@ module Teste
     # config.i18n.default_locale = :de
     config.assets.precompile += %w( application )
     
+    #lib diretório incluído quando a aplicação do Rails é carregada
+    config.autoload_paths << Rails.root.join('lib')
+    
     
 config.middleware.insert_before 0, "Rack::Cors" do
       allow do

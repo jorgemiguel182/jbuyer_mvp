@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   before_create -> {self.token = generate_token}
   
+  #has_secure_password
+  
   has_many :pedidos
   belongs_to :endereco
   
