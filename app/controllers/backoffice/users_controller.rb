@@ -1,5 +1,7 @@
-class Backoffice::UsersController < BackofficeController
+class Backoffice::UsersController < BackofficeController    
   before_action :set_user, only: [:edit, :update]
+ # before_action :authenticate, only: [:destroy]
+    
   
   def index
     @users = User.all.paginate(:page => params[:page], :per_page => 5)
@@ -65,6 +67,8 @@ class Backoffice::UsersController < BackofficeController
           ]
         )
     end
+  
+   
   
   
 end

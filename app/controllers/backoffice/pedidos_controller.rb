@@ -1,6 +1,8 @@
 class Backoffice::PedidosController < BackofficeController
   before_action :set_pedido, only: [:edit, :update, :show]
   before_action :set_user, only: [:pedido_user]
+  #before_action :authenticate, only: [:create, :update]
+  
   layout "backoffice"
   
   def index   
@@ -10,7 +12,7 @@ class Backoffice::PedidosController < BackofficeController
   end
   
   def pedido_user
-    render json: @user
+    render json: {pedidos: @user}
     
   end
   
