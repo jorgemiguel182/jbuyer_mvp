@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108201136) do
+ActiveRecord::Schema.define(version: 20171109211330) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20171108201136) do
     t.integer  "tipo_produto_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "img_url"
   end
 
   create_table "tipo_produtos", force: true do |t|

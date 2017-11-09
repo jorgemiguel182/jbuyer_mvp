@@ -4,13 +4,16 @@ class Backoffice::PedidosController < BackofficeController
   
   before_filter :authenticate_request!, only: [:teste]
   
-  layout "backoffice"
+  layout "backoffice", except: [:teste]
   
    
   
   def teste
    @pedidoss = Pedido.all 
-   render json: @pedidoss  
+     respond_to do |format|
+        format.json { render json: @pedidoss  }
+        format.html{render 'testa_auth/teste'}
+     end
   end
   
   def index   

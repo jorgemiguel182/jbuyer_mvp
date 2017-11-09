@@ -48,7 +48,7 @@ end
   
 
   namespace :backoffice do
-    resources :produtos, only: [ :show, :index] 
+    resources :produtos 
   end
   
   devise_for :admins
