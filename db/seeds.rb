@@ -17,7 +17,7 @@ Admin.create!(
     role: 0)
 
 Admin.create!(
-    name: "Bruno Viado",
+    name: "Bruno",
     email: "teste@teste.com",
     password: "123456",
     password_confirmation: "123456",
