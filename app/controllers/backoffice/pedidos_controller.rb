@@ -1,7 +1,8 @@
 class Backoffice::PedidosController < BackofficeController
   before_action :set_pedido, only: [:edit, :update, :show]
   before_action :set_user, only: [:pedido_user]
-  #before_action :authenticate, only: [:create, :update]
+  
+  before_filter :authenticate_request!, only: [:pedido_user]
   
   layout "backoffice"
   
@@ -43,7 +44,7 @@ class Backoffice::PedidosController < BackofficeController
     @pedido = Pedido.new(params_pedido)    
     respond_to do |format|
       if @pedido.save!
-        format.json { render json: @pedido, include: {pedido_produtos: {include: {produto: {only: [:valor_pago,:produto]}}}} }
+        format.json { render json: @pedido, include: {pedido_produtos: {include: {produto: {only: [:valor_pago,:produto]}}}}}
       else
         format.json { render json: @pedido.errors, status: :unprocessable_entity }
       end
@@ -85,4 +86,5 @@ class Backoffice::PedidosController < BackofficeController
       )    
     end
     
+   
 end

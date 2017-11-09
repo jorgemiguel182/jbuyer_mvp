@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
-  before_create -> {self.token = generate_token}
-  
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable
+  #       :recoverable, :rememberable, :trackable, :validatable
+   
   #has_secure_password
   
   has_many :pedidos
@@ -10,14 +13,6 @@ class User < ActiveRecord::Base
   
  # scope :co_pedido, ->  User.joins(:pedido)
   
-  private
- 
-  def generate_token
-      loop do
-        token = SecureRandom.hex
-        return token unless User.exists?({token: token})
-      end
-  end
   
   
 end

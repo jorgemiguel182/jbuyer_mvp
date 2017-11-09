@@ -5,15 +5,16 @@ class Backoffice::ProdutosController < BackofficeController
   def index
     @produtos = Produto.all
         
-    render json: {produtos: @produtos}
-    
+    render json: {produtos: @produtos}    
   end
+  
   
   def show
     render json: @produto, except: [:created_at, :updated_at, :valor_pago]
   end
   
-   private
+  
+  private
   
     def set_produto
       @produto = Produto.find params[:id]

@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  
+  devise_for :users
+  post 'auth_user' => 'authentication#authenticate_user'
+  
   namespace :backoffice do
   resources :admins
   end
-
+  
   namespace :backoffice do
   namespace :filtrado do
     get 'filtrados/detalhes'

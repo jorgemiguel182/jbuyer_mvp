@@ -1,6 +1,5 @@
 class Backoffice::UsersController < BackofficeController    
   before_action :set_user, only: [:edit, :update]
- # before_action :authenticate, only: [:destroy]
     
   
   def index
@@ -66,9 +65,6 @@ class Backoffice::UsersController < BackofficeController
           :complemento          
           ]
         )
-    end
-  
-   
-  
+    end  
   
 end
