@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   
   devise_for :users
+  
   post 'auth_user' => 'authentication#authenticate_user'
+  get 'testa_auth' => 'backoffice/pedidos#teste'
+  
   
   namespace :backoffice do
   resources :admins

@@ -2,9 +2,16 @@ class Backoffice::PedidosController < BackofficeController
   before_action :set_pedido, only: [:edit, :update, :show]
   before_action :set_user, only: [:pedido_user]
   
-  before_filter :authenticate_request!, only: [:edit]
+  before_filter :authenticate_request!, only: [:teste]
   
   layout "backoffice"
+  
+   
+  
+  def teste
+   @pedidoss = Pedido.all 
+   render json: @pedidoss  
+  end
   
   def index   
     @pedidos = Pedido.all
