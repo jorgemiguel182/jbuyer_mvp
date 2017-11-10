@@ -8,7 +8,7 @@ class Backoffice::ProdutosController < BackofficeController
     
     respond_to do |format|      
       format.json { render json: {produtos: @produtoss} }
-      format.html      
+      format.html { render "index"}    
     end
   end
   
@@ -16,6 +16,9 @@ class Backoffice::ProdutosController < BackofficeController
     @produto = Produto.new
   end
   
+  def lista_produtos
+    @lista = Produto.all
+    render json: {produtos: @produtoss}
   
   def show
     render json: @produto, except: [:created_at, :updated_at, :valor_pago]
