@@ -19,7 +19,7 @@ class Backoffice::ProdutosController < BackofficeController
   def lista_produtos
     @lista = Produto.all
     render json: {produtos: @produtoss}
-  
+  end
   def show
     render json: @produto, except: [:created_at, :updated_at, :valor_pago]
   end
