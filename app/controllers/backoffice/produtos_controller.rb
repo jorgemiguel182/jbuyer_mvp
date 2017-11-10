@@ -3,8 +3,8 @@ class Backoffice::ProdutosController < BackofficeController
 
   
   def index
-    @produtos = Produto.all.paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
+      @produtos = Produto.all.paginate(:page => params[:page], :per_page => 5)
       format.json { render json: {produtos: @produtos} }
       format.html      
     end
@@ -55,7 +55,9 @@ class Backoffice::ProdutosController < BackofficeController
         :qtd_estoque, 
         :valor_pago, 
         :valor_venda, 
+        :tipo_produto_id,
         tipo_produto_attributes: [
+          :id,
           :nome_tipo
           ])
     end

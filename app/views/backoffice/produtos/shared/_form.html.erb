@@ -38,10 +38,8 @@
         
         <div>
           <label>Tipo de produto</label>
-             
-          <%= fields_for :tipo_produto, @produto.tipo_produto do |permission_fields| %>
-            <%= permission_fields.text_field :nome_tipo, class: "form-control" %>
-          <% end %>
+          <br/>          
+            <%= collection_select(:produto, :tipo_produto_id, TipoProduto.all, :id, :nome_tipo) %>
         </div>      
         
         <button type="submit" class="btn btn-default">Salvar</button>
