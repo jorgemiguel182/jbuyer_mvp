@@ -39,7 +39,7 @@ class Backoffice::PedidosController < BackofficeController
   def update   
     respond_to do |format|
       if @pedido.update(params_pedido)
-        Backoffice::PedidoMailer.atualiza_pedido(@pedido.user).deliver
+        #Backoffice::PedidoMailer.atualiza_pedido(@pedido.user).deliver
         format.json { render json: @pedido, status: :ok }    
         format.html { redirect_to backoffice_filtrado_filtrados_abertos_path, notice: "O pedido foi alterado com sucesso"}
       else 
