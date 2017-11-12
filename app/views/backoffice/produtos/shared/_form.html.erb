@@ -39,7 +39,7 @@
               
         <div class="form-group">
           <label>Selecione a foto</label>
-          <%= f.file_field :foto %>
+          <%= file_field_tag "images[]", type: :file, multiple: true %>
         </div>
         
         <div>

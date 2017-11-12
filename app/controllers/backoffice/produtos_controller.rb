@@ -32,7 +32,12 @@ class Backoffice::ProdutosController < BackofficeController
   def create
     @produto = Produto.new(params_prod)
     if @produto.save
-      
+       if params[:images]
+        #===== The magic is here ;)
+        params[:images].each { |image|
+          @produto.pictures.create(foto: image)
+        }
+      end
       redirect_to backoffice_produtos_path, notice: "O produto (#{@produto.produto}) foi cadastrado com sucesso!"
     else 
       render :new

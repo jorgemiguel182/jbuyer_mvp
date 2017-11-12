@@ -6,6 +6,11 @@ json.produtos @lista do |lista|
   json.valor_pago   lista.valor_pago
   json.valor_venda  lista.valor_venda
   json.tipo_produto_id lista.tipo_produto_id
-  json.foto url_to_image(lista.foto.url(:medium))
+  
+  json.fotos do
+    json.array!(lista.pictures) do |pic|
+      json.foto url_to_image(pic.foto.url(:medium))  
+    end
+  end  
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171111180650) do
+ActiveRecord::Schema.define(version: 20171112191145) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -67,6 +67,16 @@ ActiveRecord::Schema.define(version: 20171111180650) do
     t.datetime "updated_at"
   end
 
+  create_table "pictures", force: true do |t|
+    t.integer  "produto_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
+  end
+
   create_table "produtos", force: true do |t|
     t.string   "produto"
     t.integer  "qtd_estoque"
@@ -76,11 +86,6 @@ ActiveRecord::Schema.define(version: 20171111180650) do
     t.integer  "tipo_produto_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "img_url"
-    t.string   "foto_file_name"
-    t.string   "foto_content_type"
-    t.integer  "foto_file_size"
-    t.datetime "foto_updated_at"
   end
 
   create_table "tipo_produtos", force: true do |t|
@@ -98,7 +103,6 @@ ActiveRecord::Schema.define(version: 20171111180650) do
     t.integer  "endereco_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "token"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -114,6 +118,5 @@ ActiveRecord::Schema.define(version: 20171111180650) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["endereco_id"], name: "index_users_on_endereco_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["token"], name: "index_users_on_token"
 
 end

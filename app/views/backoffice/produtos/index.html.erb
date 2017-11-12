@@ -53,8 +53,13 @@
                     <% end %>                               
                   </td>
                   <td>
-                    
-                    <%= image_tag produto.foto.url(:thumb) %>
+                    <% produto.pictures.each do |pics| %>
+                      <% unless pics.foto.nil? %>
+                        <% @pic = produto.pictures.first %>
+                        <%= image_tag @pic.foto.url(:thumb) %>
+                        <% break %>
+                      <% end %> 
+                    <% end %> 
                   </td>
                 </tr>
                 <% end %>
