@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171109211330) do
+ActiveRecord::Schema.define(version: 20171111180650) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -77,6 +77,10 @@ ActiveRecord::Schema.define(version: 20171109211330) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "img_url"
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
   end
 
   create_table "tipo_produtos", force: true do |t|

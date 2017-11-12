@@ -9,7 +9,7 @@
     <div class="panel-body">
       <div class="col-lg-6">
 
-       <%= form_for([:backoffice, @produto]) do |f| %>
+       <%= form_for([:backoffice, @produto],  html: {multipart: true}) do |f| %>
 
         <div class="form-group">
            <label>Nome</label>
@@ -34,6 +34,12 @@
         <div class="form-group">
            <label>Valor da venda</label>
            <%= f.number_field :valor_venda, class: "form-control" %>
+        </div>
+        
+              
+        <div class="form-group">
+          <label>Selecione a foto</label>
+          <%= f.file_field :foto %>
         </div>
         
         <div>

@@ -1,15 +1,18 @@
 class Backoffice::ProdutosController < BackofficeController
+  require 'socket'
+  
+  
+  
   before_action :set_produto, only: [:show, :edit]
 
   
   def index
     @produtos = Produto.all.paginate(:page => params[:page], :per_page => 5)
-    @produtoss = Produto.all
-    
+  
     respond_to do |format|      
-      format.json { render json: {produtos: @produtoss} }
       format.html { render "index"}    
     end
+    
   end
   
   def new
@@ -18,8 +21,9 @@ class Backoffice::ProdutosController < BackofficeController
   
   def lista_produtos
     @lista = Produto.all
-    render json: {produtos: @lista}
+ 
   end
+  
   def show
     render json: @produto, except: [:created_at, :updated_at, :valor_pago]
   end
@@ -28,6 +32,7 @@ class Backoffice::ProdutosController < BackofficeController
   def create
     @produto = Produto.new(params_prod)
     if @produto.save
+      
       redirect_to backoffice_produtos_path, notice: "O produto (#{@produto.produto}) foi cadastrado com sucesso!"
     else 
       render :new
@@ -50,6 +55,9 @@ class Backoffice::ProdutosController < BackofficeController
   
   private
   
+  def original_url
+    base_url + original_fullpath
+  end
     def set_produto
       @produto = Produto.find params[:id]
     end 
@@ -61,6 +69,7 @@ class Backoffice::ProdutosController < BackofficeController
         :valor_pago, 
         :valor_venda, 
         :tipo_produto_id,
+        :foto,
         tipo_produto_attributes: [
           :id,
           :nome_tipo
