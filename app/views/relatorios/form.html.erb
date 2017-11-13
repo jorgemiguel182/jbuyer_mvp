@@ -1,0 +1,31 @@
+<div id="page-wrapper">
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Gerar Relatório</h2>
+      </div>
+      
+      <div class="panel-body">
+               
+        <%= form_tag('/relatorios/gerar_por_periodo') do %>
+         <h4>
+            Selecione o Período desejado
+        </h4>
+        
+        <div class="form-group">
+          <label>Data Inicial</label>
+          <%= date_field_tag("data_ini")%>
+        </div>
+        
+        <div class="form-group">
+          <label>Data Final</label>
+          <%= date_field_tag("data_fin")%>
+        </div>
+        
+        <%= submit_tag 'Gerar'%>
+        <% end %>       
+      
+      </div>
+      </div>
+    </div>
+  

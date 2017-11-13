@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   
   post 'auth_user' => 'authentication#authenticate_user'
   get 'testa_auth' => 'backoffice/pedidos#teste'
+  
   get 'lista_produtos' => 'backoffice/produtos#lista_produtos'
   
+  get 'relatorios/form'
+  post 'relatorios/gerar_por_periodo'
   
   namespace :backoffice do
   resources :admins

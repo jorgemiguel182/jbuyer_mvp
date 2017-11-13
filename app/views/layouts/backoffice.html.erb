@@ -87,44 +87,61 @@
             </li>
             
             <% if admin_signed_in? %>
-            <% if current_admin.full_access? %>
-            <li>
-              <a><i class="fa fa-user fa-fw"></i>Administração<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level">
-                <li>
-                  <a>Relatórios<span class="fa arrow"></span></a>
-                  <ul class="nav nav-third-level">
-                    <li>
-                      <a href="flot.html">Operacionais</a>
-                    </li>
-                    <li>
-                      <a href="morris.html">Gerenciais</a>
-                    </li>
-                  </ul>
-                  <!-- /.nav-second-level -->
-                </li>
-                <li>
-                   <%= link_to backoffice_admins_path do %>
+            <% if current_admin.full_access? %>            
+              <li>
+                <a>Relatórios<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                  
+                  <li>
+                    <a href="#">
+                      Operacionais
+                      <span class="fa arrow"></span>
+                    </a>                                 
+                     <ul class="nav nav-third-level">
+                        <li>
+                          <%= link_to '#' do %>
+                            Estoque atual
+                          <% end %>
+                        </li>                        
+                      </ul>
+                  </li>
+                  
+                  <li>
+                    <a href="#">
+                      Gerenciais
+                      <span class="fa arrow"></span>
+                    </a>                                 
+                     <ul class="nav nav-third-level">
+                        <li>
+                          <%= link_to relatorios_form_path do %>
+                            Vendas por período
+                          <% end %>
+                        </li>                        
+                      </ul>
+                    
+                  </li>
+                </ul>
+                <!-- /.nav-second-level -->
+              </li>
+              <li>
+                 <%= link_to backoffice_admins_path do %>
                     Administradores
-                    <% end %>
-                 
-                </li>
-                <li>
-                   <%= link_to backoffice_users_path do %>
-                    Usuarios
-                    <% end %>
-                 
-                </li>
-                <li>
-                  <%= link_to backoffice_produtos_path do %>
-                    Produtos
+                 <% end %>
+              </li>
+              <li>
+                 <%= link_to backoffice_users_path do %>
+                  Usuarios
                   <% end %>
-                </li>
-              </ul>
-              <!-- /.nav-second-level -->
-            </li>
+
+              </li>
+              <li>
+                <%= link_to backoffice_produtos_path do %>
+                  Produtos
+                <% end %>
+              </li>  
             <% end %>
             <% end %>
+            
           </ul>
         </div>
         <!-- /.sidebar-collapse -->
