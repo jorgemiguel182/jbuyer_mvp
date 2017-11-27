@@ -12,20 +12,18 @@
             Selecione o Período desejado
         </h4>
         
-        <div class="form-group">
-          <label>Data Inicial</label>
-          <%= date_field_tag("data_ini")%>
-        </div>
-        
-        <div class="form-group">
-          <label>Data Final</label>
+        <div >
+          <label>Data Inicial:</label>
+          <%= date_field_tag("data_ini")%>   
+          <label>Data Final:</label>
           <%= date_field_tag("data_fin")%>
+          
         </div>
-        
+       <!-- #<%= hidden_field_tag :format, :pdf %> --!>
         <%= submit_tag 'Gerar'%>
         <% end %>       
       
       </div>
       </div>
     </div>
-  
+   </div>
